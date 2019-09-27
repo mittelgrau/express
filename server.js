@@ -1,19 +1,19 @@
-// server.js
-// where your node app starts
-
-// init project
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(morgan('tiny'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+
+app.get('/', (req, res) => {
+  res.send('test');
+});
+
+app.post('/authenticate', (req,res) => {
+  res.send(req.body.password);
 });
 
 // listen for requests :)
