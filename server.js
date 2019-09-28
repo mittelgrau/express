@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/authenticate', (req,res) => {
-  res.status(401).send(req.body);
+  res.send(req.body);
 });
 
 // listen for requests :)
