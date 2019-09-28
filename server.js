@@ -1,19 +1,20 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const cors = require('cors');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('tiny'));
-
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('test');
 });
 
 app.post('/authenticate', (req,res) => {
-  res.send(req.body.password);
+  res.status(401).send(req.body);
 });
 
 // listen for requests :)
