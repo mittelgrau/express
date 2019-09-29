@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(morgan('tiny'));
 
 app.use(cors());
-app.use();
 
 app.get('/', (req, res) => {
   res.send('test');

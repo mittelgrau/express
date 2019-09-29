@@ -28,8 +28,6 @@ router.get('/entries', async (req, res) => {
   res.send(files);
 });
 
-;
-};
 
 async function testing() {
   fetch('', {
