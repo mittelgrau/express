@@ -16,7 +16,7 @@ async function decrypt(password) {
 }
 
 router.post(
-  'login',
+  '/login',
   celebrate({
     body: Joi.object().keys({
       password: Joi.string().required()
@@ -30,19 +30,27 @@ router.post(
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);
-    
+
     const cookieOptions = {
-        httpOnly: true,
-        expires: 0
-    }
+      httpOnly: true,
+      expires: 0
+    };
 
     res.cookie('auth_token', token, cookieOptions);
-    res.
-
+    res.status(401).send('okay');
   }
 );
 
-
-
+router.get(
+  '/test',
+  celebrate({
+    cookies: Joi.object({
+      auth_token: Joi.string().required()
+    })
+  }),
+  (req, res) => {
+    res.send("we're in");
+  }
+);
 
 module.exports = router;

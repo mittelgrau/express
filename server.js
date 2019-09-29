@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
   res.send('test');
 });
 
+const authRouter = require('./routes/authentication');
+app.use('/auth', authRouter);
+
 const gitRouter = require('./routes/github');
 app.use('/api', gitRouter);
 
