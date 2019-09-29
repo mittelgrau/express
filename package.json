@@ -15,7 +15,9 @@
     "cors": "^2.8.5",
     "helmet": "^3.21.1",
     "cookie-parser": "^1.4.4",
-    "argon2": "^0.24.1"
+    "argon2": "^0.24.1",
+    "got": "^9.6.0",
+    "gh-got": "^8.1.0"
   },
   "engines": {
     "node": "8.x"
