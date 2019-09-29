@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('test');
 });
 
-const authRouter = require('./routes/authentication');
+const authRouter = require('./routes/authenticate');
 app.use('/auth', authRouter);
 
 const gitRouter = require('./routes/github');

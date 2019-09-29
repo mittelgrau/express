@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const argon2 = require('argon2');
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
@@ -9,7 +9,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 
 async function decrypt(password) {
   try {
-    return (verify = await argon2.verify(process.env.PASSWORD, password));
+    return await argon2.verify(process.env.PASSWORD, password);
   } catch (err) {
     return false;
   }
@@ -49,8 +49,10 @@ router.get(
     })
   }),
   (req, res) => {
-    res.send("we're in");
+    if (err) res.send(req.cookies);
   }
 );
+
+app.use(erros());
 
 module.exports = router;
