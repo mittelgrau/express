@@ -48,11 +48,9 @@ router.get(
       auth_token: Joi.string().required()
     })
   }),
-  (req, res) => {
-    if (err) res.send(req.cookies);
+  (err, req, res) => {
+    res.send(err.details[0].message);
   }
 );
-
-app.use(erros());
 
 module.exports = router;
