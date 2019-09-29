@@ -1,9 +1,15 @@
 const express = require('express');
+const got = require('got');
 const router = express.Router();
 
-
-router.get('getPosts', (req,res) => {
-
+router.get('/entries', async (req, res) => {
+  const url = 'https://api.github.com/repos/mittelgrau/node_db/_data';
+  const raw = await got(url, {
+    headers: {
+      Authorization: `token ${process.env.GITTOKEN}`
+    }
+  });
+  console.log(raw);
 });
 
 const postFile = async data => {
