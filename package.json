@@ -13,7 +13,9 @@
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "cors": "^2.8.5",
-    "helmet": "^3.21.1"
+    "helmet": "^3.21.1",
+    "cookie-parser": "^1.4.4",
+    "argon2": "^0.24.1"
   },
   "engines": {
     "node": "8.x"

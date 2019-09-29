@@ -2,12 +2,17 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
+const cookie = require('cookie-parser');
+const argon2 = require('argon2');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(helmet());
 app.use(cors());
+app.use()
+
 
 app.get('/', (req, res) => {
   res.send('test');
@@ -16,28 +21,6 @@ app.get('/', (req, res) => {
 app.post('/authenticate', (req,res) => {
   res.send(req.body);
 });
-
-const postFile = async data => {
-    const payload = {
-        message: 'new shared link',
-        content: Buffer.from(fileContent).toString('base64'),
-        comitter: {
-            name: '',
-            email: ''
-        }
-    };
-
-    const options = {
-        method: 'PUT',
-        body: Json.stringify(payload),
-        headers: {
-            Authorization: `token ${process.env.GITTOKEN}`
-        }
-    };
-
-    return await fetch(url, options);
-};
-
 
 app.get('/nah', function(req, res) {
     fetch('https://api.github.com/repos/mittelgrau/node_db/contents/db.json', {
