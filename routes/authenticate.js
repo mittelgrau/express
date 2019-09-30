@@ -7,14 +7,6 @@ require('dotenv').config();
 const cookie = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 
-async function decrypt(password) {
-    try {
-        return await argon2.verify(process.env.PASSWORD, password);
-    } catch (err) {
-        return false;
-    }
-}
-
 router.post(
     '/login',
     celebrate({
@@ -22,9 +14,13 @@ router.post(
             password: Joi.string().required()
         })
     }),
-    (req, res) => {
-        console.log(decrypt(req.body.password));
-        if (!decrypt(req.body.password)) {
+    async (req, res) => {
+        const encrypted = await argon2
+            .verify(process.env.PASSWORD, req.body.password)
+            .catch(err => console.log(err));
+        console.log(encrypted);
+
+        if (!encrypted) {
             return res.status(403).send('not allowed');
         }
 
