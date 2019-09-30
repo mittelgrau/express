@@ -15,12 +15,7 @@ router.post(
         })
     }),
     async (req, res) => {
-        const encrypted = await argon2
-            .verify(process.env.PASSWORD, req.body.password)
-            .catch(err => console.log(err));
-        console.log(encrypted);
-
-        if (!encrypted) {
+        if (req.body.password !== process.env.SAMPLEPASSWORD) {
             return res.status(403).send('not allowed');
         }
 
@@ -41,7 +36,6 @@ router.post(
 );
 
 router.get('/test', (req, res) => {
-    const cooki = req.cookies;
     // const verified = jwt.verify(req.cookies, process.env.JWT_SECRET, function(err,token){
     // if(err) {
     //  res.status(403).send('Your authentication seems to be wrong);
@@ -49,6 +43,7 @@ router.get('/test', (req, res) => {
     //res.send('hiiiii bro')
     //}
     //})
+    console.log(req.cookies);
     res.status(403).send(cooki);
 });
 
