@@ -23,22 +23,21 @@ router.post(
     })
   }),
   (req, res) => {
-    res.send(req.cookies);
-    // if (!decrypt(req.body.password)) return res.status(403).send('not allowed');
+    if (!decrypt(req.body.password)) return res.status(403).send('not allowed');
 
-    // const payload = {
-    //   id: nanoid()
-    // };
+    const payload = {
+      id: nanoid()
+    };
 
-    // const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    // const cookieOptions = {
-    //   httpOnly: true,
-    //   expires: 0
-    // };
+    const cookieOptions = {
+      httpOnly: true,
+      expires: 0
+    };
 
-    // res.cookie('auth_token', token, cookieOptions);
-    // res.status(401).send('okay');
+    res.cookie('auth_token', token, cookieOptions);
+    res.status(401).send('okay');
   }
 );
 
