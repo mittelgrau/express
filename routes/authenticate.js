@@ -23,21 +23,22 @@ router.post(
     })
   }),
   (req, res) => {
-    if (!decrypt(req.body.password)) return res.status(403).send('not allowed');
+    res.send(req.cookies);
+    // if (!decrypt(req.body.password)) return res.status(403).send('not allowed');
 
-    const payload = {
-      id: nanoid()
-    };
+    // const payload = {
+    //   id: nanoid()
+    // };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    // const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    const cookieOptions = {
-      httpOnly: true,
-      expires: 0
-    };
+    // const cookieOptions = {
+    //   httpOnly: true,
+    //   expires: 0
+    // };
 
-    res.cookie('auth_token', token, cookieOptions);
-    res.status(401).send('okay');
+    // res.cookie('auth_token', token, cookieOptions);
+    // res.status(401).send('okay');
   }
 );
 
@@ -50,7 +51,7 @@ router.get('/test', (req, res) => {
   //res.send('hiiiii bro')
   //}
   //})
-  res.send(cooki);
+  res.status(400).send(cooki);
 });
 
 module.exports = router;
