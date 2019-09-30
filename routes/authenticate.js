@@ -41,16 +41,16 @@ router.post(
   }
 );
 
-router.get(
-  '/test',
-  celebrate({
-    cookies: Joi.object({
-      auth_token: Joi.string().required()
-    })
-  }),
-  (err, req, res) => {
-    res.send(err.details[0].message);
-  }
-);
+router.get('/test', (req, res) => {
+  const cooki = req.cookies;
+  // const verified = jwt.verify(req.cookies, process.env.JWT_SECRET, function(err,token){
+  // if(err) {
+  //  res.status(403).send('Your authentication seems to be wrong);
+  //} else{
+  //res.send('hiiiii bro')
+  //}
+  //})
+  res.send(cooki);
+});
 
 module.exports = router;
