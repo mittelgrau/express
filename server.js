@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookie = require('cookie-parser');
 const helmet = require('helmet');
+const { catchErros } = require('helper.js');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 const authRouter = require('./routes/authenticate');
-app.use('/auth', authRouter);
+app.use('/auth', catchErrors(authRouter));
 
 const gitRouter = require('./routes/github');
 app.use('/api', gitRouter);
