@@ -44,7 +44,7 @@ router.get('/test', (req, res) => {
     //}
     //})
     console.log(req.cookies);
-    res.status(403).send(cooki);
+    res.status(200).send(req.cookies);
 });
 
 module.exports = router;
