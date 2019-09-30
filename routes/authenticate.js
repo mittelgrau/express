@@ -50,7 +50,7 @@ router.get('/test', (req, res) => {
   //res.send('hiiiii bro')
   //}
   //})
-  res.status(400).send(cooki);
+  res.status(403).send(cooki);
 });
 
 module.exports = router;
