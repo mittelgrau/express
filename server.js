@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
 const authRouter = require('./routes/authenticate');
 app.use('/auth', catchErrors(authRouter));
 
+// req.cookies
+
 const gitRouter = require('./routes/github');
 app.use('/api', gitRouter);
 
