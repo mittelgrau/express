@@ -34,7 +34,7 @@ router.post('/log', async (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-    const token = req.cookies.auth_token;
+    const token = req.cookies;
 
     // const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
