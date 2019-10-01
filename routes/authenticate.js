@@ -20,9 +20,8 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     const cookieOptions = {
-        httpOnly: true,
-        expires: 0,
         maxAge: 3600,
+        httpOnly: true,
         path: '/'
     };
 
@@ -38,7 +37,7 @@ router.get('/test', (req, res) => {
     //res.send('hiiiii bro')
     //}
     //})
-    console.log(req.cookies);
+
     res.status(200).send(req.cookies);
 });
 
