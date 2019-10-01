@@ -21,7 +21,8 @@ router.post('/login', async (req, res) => {
 
     const cookieOptions = {
         httpOnly: true,
-        expires: 0
+        expires: 0,
+        path: '/'
     };
 
     res.cookie('auth_token', token, cookieOptions);
