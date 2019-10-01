@@ -21,9 +21,10 @@ router.post('/login', async (req, res) => {
 
     res.cookie('auth_token', token, {
         maxAge: 3600,
-        httpOnly: true
+        httpOnly: false,
+        path: '/'
     });
-    res.status(200).end();
+    res.status(200).send('it works');
 });
 
 router.post('/log', async (req, res) => {
