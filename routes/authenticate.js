@@ -21,15 +21,15 @@ router.post('/login', async (req, res) => {
 
     const cookieOptions = {
         maxAge: 3600,
-        httpOnly: true,
-        path: '/'
+        httpOnly: true
     };
 
     res.cookie('auth_token', token, cookieOptions);
-    res.status(200).send('okay');
+    res.status(200).end();
 });
 
 router.get('/test', (req, res) => {
+    const token = req.cookies.auth_token;
     // const verified = jwt.verify(req.cookies, process.env.JWT_SECRET, function(err,token){
     // if(err) {
     //  res.status(403).send('Your authentication seems to be wrong);
@@ -38,7 +38,7 @@ router.get('/test', (req, res) => {
     //}
     //})
 
-    res.status(200).send(req.cookies);
+    res.status(200).send(token);
 });
 
 module.exports = router;
