@@ -1,4 +1,5 @@
 dependencies:
+  '@hapi/joi': 16.1.4
   argon2: 0.24.1
   celebrate: 10.0.1
   cookie-parser: 1.4.4
@@ -20,6 +21,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-1dVNHT76Uu5N3eJNTYcvxee+jzX4Z9lfciqRRHCU27ihbUcYi+iSc2iml5Ke1LXe1SyJCLA0+14Jh4tXJgOppA==
+  /@hapi/formula/1.2.0:
+    dev: false
+    resolution:
+      integrity: sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA==
   /@hapi/hoek/8.2.5:
     dev: false
     resolution:
@@ -33,6 +38,20 @@ packages:
     dev: false
     resolution:
       integrity: sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==
+  /@hapi/joi/16.1.4:
+    dependencies:
+      '@hapi/address': 2.1.2
+      '@hapi/formula': 1.2.0
+      '@hapi/hoek': 8.2.5
+      '@hapi/pinpoint': 1.0.2
+      '@hapi/topo': 3.1.4
+    dev: false
+    resolution:
+      integrity: sha512-m7ctezhxjob+dSpXnCNlgAj6rrEpdSsaWu3GWL3g1AybQCU36mlAo9IwGFJwIxD+oHgdO6mYyviYlaejX+qN6g==
+  /@hapi/pinpoint/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-dtXC/WkZBfC5vxscazuiJ6iq4j9oNx1SHknmIr8hofarpKUZKmlUVYVIhNVzIEgK5Wrc4GMHL5lZtt1uS2flmQ==
   /@hapi/topo/3.1.4:
     dependencies:
       '@hapi/hoek': 8.2.5
@@ -907,6 +926,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@hapi/joi': ^16.1.3
   argon2: ^0.24.1
   celebrate: ^10.0.0
   cookie-parser: ^1.4.4
