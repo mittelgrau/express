@@ -19,12 +19,10 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    const cookieOptions = {
+    res.cookie('auth_token', token, {
         maxAge: 3600,
         httpOnly: true
-    };
-
-    res.cookie('auth_token', token, cookieOptions);
+    });
     res.status(200).end();
 });
 
