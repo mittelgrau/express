@@ -4,7 +4,7 @@ const argon2 = require('argon2');
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const cookie = require('cookie-parser');
+
 const { celebrate, Joi, errors } = require('celebrate');
 
 router.post('/login', async (req, res) => {
@@ -22,6 +22,7 @@ router.post('/login', async (req, res) => {
     const cookieOptions = {
         httpOnly: true,
         expires: 0,
+        maxAge: 3600,
         path: '/'
     };
 
