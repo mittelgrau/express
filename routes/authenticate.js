@@ -28,15 +28,21 @@ router.post('/login', async (req, res) => {
     res.status(200).end();
 });
 
+router.post('/log', async (req, res) => {
+    const token = req.cookies;
+    res.send(token);
+});
+
 router.get('/test', (req, res) => {
     const token = req.cookies.auth_token;
-    // const verified = jwt.verify(req.cookies, process.env.JWT_SECRET, function(err,token){
-    // if(err) {
-    //  res.status(403).send('Your authentication seems to be wrong);
-    //} else{
-    //res.send('hiiiii bro')
-    //}
-    //})
+
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // if (decoded) {
+    //     res.send('inside');
+    // } else {
+    //     res.send('outside');
+    // }
 
     res.status(200).send(token);
 });
