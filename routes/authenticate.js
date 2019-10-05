@@ -20,9 +20,8 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     res.cookie('auth_token', token, {
-        sameSite: 'Lax',
-        expires: 0,
-        httpOnly: false,
+        // sameSite: 'Lax',
+        httpOnly: true,
         path: '/'
     });
     res.status(200).send('it works');

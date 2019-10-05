@@ -46,6 +46,11 @@ app.post('/login', async (req, res) => {
         path: '/'
     });
 
+    res.cookie('rememberme', '1', {
+        expires: new Date(Date.now() + 900000),
+        httpOnly: true
+    });
+
     res.status(200).send(req.cookies);
 });
 
