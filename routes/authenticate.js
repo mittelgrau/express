@@ -14,12 +14,12 @@ router.post('/login', async (req, res) => {
     }
 
     const payload = {
-        id: 'testahu'
+        id: '30'
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    res.cookie('auth_token', token, {
+    res.cookie('auth_token', '1', {
         sameSite: 'Lax',
         expires: 0,
         httpOnly: true,
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
     //     path: '/'
     // });
 
-    res.status(200).send('it works');
+    res.status(200).send('hm, not quite sure');
 });
 
 router.post('/log', async (req, res) => {
