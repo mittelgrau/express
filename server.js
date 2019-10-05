@@ -5,6 +5,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { catchErrors } = require('./helpers.js');
+const session = require('express-session');
+// const routes = require('./routes/index');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
@@ -66,6 +68,8 @@ app.use('/api', gitRouter);
 app.post('/authenticate', (req, res) => {
     res.send(req.body);
 });
+
+// app.use('/', routes);
 
 const listener = app.listen(process.env.PORT, function() {
     console.log('Your app is listening on port ' + listener.address().port);
