@@ -44,7 +44,7 @@ app.post('/login', async (req, res) => {
     path: '/'
   });
 
-  res.status(200).send('it works');
+  res.status(200).send(req.cookies);
 });
 
 app.get('/test', async (req, res) => {
