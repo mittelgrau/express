@@ -24,9 +24,13 @@ router.post('/login', async (req, res) => {
     //     httpOnly: true,
     //     path: '/'
     // });
+    const expiryDate = new Date(Date.now() + 60 * 60 * 1000);
+
     res.cookie('rememberme', '1', {
-        expires: new Date(Date.now() + 900000),
-        httpOnly: true
+        expires: 0,
+        httpOnly: true,
+        path: '/',
+        domain: '127.0.0.1'
     });
     res.status(200).send('it works');
 });
