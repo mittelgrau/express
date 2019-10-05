@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cookieParser());
+app.use(helmet());
 
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
