@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
         expires: 0,
         httpOnly: true,
         path: '/',
-        domain: '127.0.0.1'
+
     });
     res.status(200).send('it works');
 });
