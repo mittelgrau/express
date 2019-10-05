@@ -40,8 +40,9 @@ app.post('/login', async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     res.cookie('auth_token', token, {
-        httpOnly: false,
-        sameSite: false,
+        httpOnly: true,
+        expires: 0,
+        sameSite: 'Lax',
         path: '/'
     });
 
