@@ -14,22 +14,23 @@ router.post('/login', async (req, res) => {
     }
 
     const payload = {
-        id: nanoid()
+        id: 'testahu'
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
-    // res.cookie('auth_token', token, {
-    //     // sameSite: 'Lax',
-    //     httpOnly: true,
-    //     path: '/'
-    // });
-
-    res.cookie('rememberme', '1', {
+    res.cookie('auth_token', token, {
+        sameSite: 'Lax',
         expires: 0,
         httpOnly: true,
         path: '/'
     });
+
+    // res.cookie('rememberme', '1', {
+    //     expires: 0,
+    //     httpOnly: true,
+    //     path: '/'
+    // });
 
     res.status(200).send('it works');
 });
