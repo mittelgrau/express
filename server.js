@@ -26,10 +26,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    res.cookie('auth_token', '1', {
+    res.cookie('auth_token', 'testing', {
+        domain: 'http://localhost:8080',
         sameSite: 'Lax',
         expires: 0,
-        httpOnly: true,
+        httpOnly: false,
         path: '/'
     });
     res.send('added cookie');
