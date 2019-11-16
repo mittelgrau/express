@@ -27,17 +27,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    // res.cookie('auth_token', 'testing', {
-    //     domain: 'http://localhost:8080',
-    //     sameSite: 'Lax',
-    //     expires: 0,
-    //     httpOnly: false,
-    //     path: '/'
-    // });
-    res.setHeader('Set-Cookie', COOKIE.serialize('Auth-token', String('testing'), {
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7 // 1 week 
-      }));
+    res.cookie('auth_token', 'testing', {
+        sameSite: 'Lax',
+        expires: 0,
+        httpOnly: false,
+        path: '/'
+    });
+    
     res.send('added cookie');
 });
 
