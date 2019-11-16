@@ -3,6 +3,7 @@ dependencies:
   '@poppinss/cookie': 1.0.2
   argon2: 0.24.1
   celebrate: 10.0.1
+  cookie: 0.4.0
   cookie-parser: 1.4.4
   cors: 2.8.5
   dotenv: 8.1.0
@@ -986,6 +987,7 @@ specifiers:
   '@poppinss/cookie': ^1.0.2
   argon2: ^0.24.1
   celebrate: ^10.0.0
+  cookie: ^0.4.0
   cookie-parser: ^1.4.4
   cors: ^2.8.5
   dotenv: ^8.1.0

@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const cookie = require('cookie-parser');
+const COOKIE = require('cookie');
 const helmet = require('helmet');
 const { catchErrors } = require('./helpers.js');
 const session = require('express-session');
@@ -22,17 +23,21 @@ const jwt = require('jsonwebtoken');
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 app.get('/', (req, res) => {
-    res.send('test');
+    res.send(req.cookies);
 });
 
 app.post('/', (req, res) => {
-    res.cookie('auth_token', 'testing', {
-        domain: 'http://localhost:8080',
-        sameSite: 'Lax',
-        expires: 0,
-        httpOnly: false,
-        path: '/'
-    });
+    // res.cookie('auth_token', 'testing', {
+    //     domain: 'http://localhost:8080',
+    //     sameSite: 'Lax',
+    //     expires: 0,
+    //     httpOnly: false,
+    //     path: '/'
+    // });
+    res.setHeader('Set-Cookie', COOKIE.serialize('Auth-token', String('testing'), {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7 // 1 week 
+      }));
     res.send('added cookie');
 });
 
