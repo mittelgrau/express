@@ -19,58 +19,62 @@ app.use(helmet());
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 app.get('/', (req, res) => {
     res.send('test');
 });
 
-const authRouter = require('./routes/authenticate');
-
-app.use('/auth', authRouter);
-
-
-app.post('/login', async (req, res) => {
-    // {error} = loginValidation(req.body);
-    if (req.body.password !== process.env.SAMPLEPASSWORD) {
-        return res.status(403).send('not allowed');
-    }
-
-    const payload = {
-        id: nanoid()
-    };
-
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
-
-    res.cookie('auth_token', token, {
-        httpOnly: true,
-        expires: 0,
-        sameSite: 'Lax',
-        path: '/'
-    });
-
-    res.cookie('rememberme', '1', {
-        expires: new Date(Date.now() + 900000),
-        httpOnly: true
-    });
-
-    res.status(200).send(req.cookies);
+app.post('/', (req, res) => {
+    res.send(req.password);
 });
 
-app.get('/test', async (req, res) => {
-    const token = req.cookies;
-    res.send(token);
-});
+// const authRouter = require('./routes/authenticate');
 
-const gitRouter = require('./routes/github');
-app.use('/api', gitRouter);
+// app.use('/auth', authRouter);
 
-app.post('/authenticate', (req, res) => {
-    res.send(req.body);
-});
 
-const routes = require('./routes/index');
-app.use('/', routes);
+// app.post('/login', async (req, res) => {
+//     // {error} = loginValidation(req.body);
+//     if (req.body.password !== process.env.SAMPLEPASSWORD) {
+//         return res.status(403).send('not allowed');
+//     }
+
+//     const payload = {
+//         id: nanoid()
+//     };
+
+//     const token = jwt.sign(payload, process.env.JWT_SECRET);
+
+//     res.cookie('auth_token', token, {
+//         httpOnly: true,
+//         expires: 0,
+//         sameSite: 'Lax',
+//         path: '/'
+//     });
+
+//     res.cookie('rememberme', '1', {
+//         expires: new Date(Date.now() + 900000),
+//         httpOnly: true
+//     });
+
+//     res.status(200).send(req.cookies);
+// });
+
+// app.get('/test', async (req, res) => {
+//     const token = req.cookies;
+//     res.send(token);
+// });
+
+// const gitRouter = require('./routes/github');
+// app.use('/api', gitRouter);
+
+// app.post('/authenticate', (req, res) => {
+//     res.send(req.body);
+// });
+
+// const routes = require('./routes/index');
+// app.use('/', routes);
 
 app.use((err, req, res, next) => {
     console.log(err.message);
