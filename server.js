@@ -26,7 +26,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    res.send(req.password);
+    res.cookie('auth_token', '1', {
+        sameSite: 'Lax',
+        expires: 0,
+        httpOnly: true,
+        path: '/'
+    });
+    res.send('added cookie');
 });
 
 // const authRouter = require('./routes/authenticate');
