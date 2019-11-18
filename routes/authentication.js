@@ -2,20 +2,24 @@ const express = require('express');
 const router = express.Router();
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 const { comparePasswords } = require('../controller/authentication/');
 
 router.post('/login',async (req, res,next) => {
 
-    if (await comparePasswords(req.body.password)) {
-        res.send('passwörter sind gleich');
+    const compare = await comparePasswords(req.body.password)
+    res.send(compare);
+
+    // if (await comparePasswords(req.body.password)) {
+    //     res.send('passwörter sind gleich');
         // let err = new Error('Acess not allowed');
         // err.statusCode = 403;
         // next(err);
-    } else {
-        res.send('kein zutritt');
-        console.log('yes!')
-    }
+    // } else {
+    //     res.send('kein zutritt');
+    //     console.log('yes!')
+    // }
         // const payload = {
         //     id: 'nanoid'
         // };

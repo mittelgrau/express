@@ -25,21 +25,16 @@ const guard = (req, res, next) => {
 
 async function hashPassword(password) {
     try {
-        const hash = await argon2.hash(password);
+        bcrypt.hash(password, 10).then(function(hash) {
+           console.log(hash);
+        });
       } catch (err) {
         throw new Error(err);
       }
 }
 
 async function comparePasswords(password) {
-    try {
-        bcrypt.compare(password, process.env.SAMPLEPASSWORD, (err, res) => {
-           
-        });
-
-      } catch (err) {
-        throw new Error(err)
-      }
+    return await bcrypt.compare(password, process.env.SAMPLEPASSWORD);
 }
 
 module.exports = {

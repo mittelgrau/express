@@ -6,6 +6,6 @@ Content-Type: application/json
 
 {
     "name" : "sample",
-    "password": "test",
+    "password": "sample",
     "time" : "Wed, 21 Oct 2015"
 }
