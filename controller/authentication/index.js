@@ -2,6 +2,7 @@ const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
+const {password}
 
 const guard = (req, res, next) => {
     const token = req.cookies.auth_token;
