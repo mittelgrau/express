@@ -4,7 +4,7 @@ const loginValidation = data => {
     const schema = {
         password: Joi.string().required()
     };
-    return Joi.validate(data, schema);
+    return schema.validate(data);
 };
 
 module.exports = {
