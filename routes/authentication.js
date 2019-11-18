@@ -3,7 +3,6 @@ const router = express.Router();
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
 const argon2 = require('argon2');
-require('dotenv').config();
 const { comparePasswords,hashPassword } = require('../controller/authentication/');
 
 router.post('/login',async (req, res,next) => {
