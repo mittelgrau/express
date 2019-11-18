@@ -4,6 +4,7 @@ const fileToJson = (string) => {
 
     return JSON.parse(turnToJson);
 }
+
 const catchErros = (fn) => {
     return function(req,res,next){
         return fn(req,res,next).catch(next);

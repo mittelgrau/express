@@ -45,35 +45,4 @@ router.post('/login', async (req, res,next) => {
     }
 });
 
-
-
-// router.post('/login', async (req, res) => {
-//     // {error} = loginValidation(req.body);
-//     if (req.body.password !== process.env.SAMPLEPASSWORD) {
-//         return res.status(403).send('not allowed');
-//     }
-
-//     const payload = {
-//         id: '30'
-//     };
-
-//     const token = jwt.sign(payload, process.env.JWT_SECRET);
-
-//     res.cookie('auth_token', '1', {
-//         sameSite: 'Lax',
-//         expires: 0,
-//         httpOnly: true,
-//         path: '/'
-//     });
-
-//     // res.cookie('rememberme', '1', {
-//     //     expires: 0,
-//     //     httpOnly: true,
-//     //     path: '/'
-//     // });
-
-//     res.status(200).send('hm, not quite sure');
-// });
-
-
 module.exports = router;

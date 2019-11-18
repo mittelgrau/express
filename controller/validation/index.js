@@ -1,9 +1,11 @@
 const Joi = require('@hapi/joi');
 
 const loginValidation = data => {
-    const schema = {
-        password: Joi.string().required()
-    };
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        password: Joi.string().required(),
+    });
+    
     return schema.validate(data);
 };
 
