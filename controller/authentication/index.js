@@ -5,7 +5,7 @@ require('dotenv').config();
 const {hashed} = require('../../config.js');
 
 
-const guard = (req, res, next) => {
+async function guard(req, res, next) {
     
     const token = req.cookies.auth_token;
 
