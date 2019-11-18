@@ -2,27 +2,22 @@ const express = require('express');
 const router = express.Router();
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 require('dotenv').config();
 const { comparePasswords,hashPassword } = require('../controller/authentication/');
 
 router.post('/login',async (req, res,next) => {
 
-    const SALT_WORK_FACTOR = 10 
-    const compare = await bcrypt.compare(req.body.password, process.env.SAMPLEPASSWORD);
-    
-    res.send(compare);
-    
-    
-    // bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    //         if (err) return next(err);
-    //         // hash the password along with our new salt
-    //         bcrypt.hash(req.body.password, salt, function(err, hash) {
-    //             if (err) return next(err);
-    //             res.send(hash);
-    //         });
-    // });
-    
+    console.log(req.body.password);
+    try {
+        const hash = await argon2.hash(req.body.password);
+        const copy = '$argon2i$v=19$m=4096,t=3,p=1$mHqsUd6Mqhzj9MUvHu8clQ$08NBCqM8dw4oGtlhAWYr92sJRtmh78nbt+TrfNxracE';
+        const env = process.env.SAMPLEPASSWORD;
+        const hm = await argon2.verify(copy, req.body.password)
+        res.send(`${hm} ìt works but -> ${env} and -> ${copy}`);
+      } catch (err) {
+        
+      }
 
     // hashPassword(req.body.password);
     // console.log(process.env.SAMPLEPASSWORD);
