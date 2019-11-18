@@ -5,15 +5,18 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { comparePasswords } = require('../controller/authentication/');
 
-router.post('/login', (req, res,next) => {
+router.post('/login',async (req, res,next) => {
+    res.send(await comparePasswords(req.body.passwords));
 
-    if (comparePasswords(req.body.passwords)) {
-        let err = new Error('Acess not allowed');
-        err.statusCode = 403;
-        next(err);
-    } else {
-        console.log('yes!')
-    }
+    // if (await comparePasswords(req.body.passwords)) {
+    //     res.send('passwörter sind gleich');
+    //     // let err = new Error('Acess not allowed');
+    //     // err.statusCode = 403;
+    //     // next(err);
+    // } else {
+    //     res.send('kein zutritt');
+    //     console.log('yes!')
+    // }
         // const payload = {
         //     id: 'nanoid'
         // };

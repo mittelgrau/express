@@ -6,5 +6,6 @@ Content-Type: application/json
 
 {
     "name" : "sample",
+    "password": "$argon2i$v=19$m=4096,t=3,p=1$fnE8F6UdXUpRLXDTkx4ydw$zM63kow6+RWnJE7x4kyYFfZk0Q5Jocxm3K1qKK6gpls",
     "time" : "Wed, 21 Oct 2015"
 }
