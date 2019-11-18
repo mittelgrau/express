@@ -1,5 +1,6 @@
 const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
+const argon = require('argon2')
 
 const guardRoute = (req, res, next) => {
     const token = req.cookies.auth_token;
@@ -20,6 +21,10 @@ const guardRoute = (req, res, next) => {
         }
     });
 };
+
+async function comparePasswords(password) {
+
+}
 
 module.exports = {
     guardRoute

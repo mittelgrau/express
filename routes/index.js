@@ -6,7 +6,7 @@ const { indexController } = require('../controller/')
 
 router.get('/', indexController);
 
-const authRoute = 
-router.use('/auth', )
+const authRoutes = require('./authentication.js')
+router.use('/auth', authRoutes);
 
 module.exports = router;
