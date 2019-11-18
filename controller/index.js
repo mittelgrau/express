@@ -1,7 +1,7 @@
-async function indexRoute(req,res,_next) {
+async function indexController(req,res,_next) {
     res.send('hello from index Route')
 }
 
-export {
-    indexRoute
+module.exports = {
+    indexController
 }

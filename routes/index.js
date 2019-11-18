@@ -5,13 +5,15 @@ const JWT = require('jsonwebtoken');
 //     authenticate
 // } = require('../controller/auth');
 const {
-    
-}
+    indexController
+} = require('../controller/')
 
-router.get('/', (req, res) => {
-    const token = req.cookies;
-    res.send(token);    
-});
+// router.get('/', (req, res) => {
+//     const token = req.cookies;
+//     res.send(token);    
+// });
+
+router.get('/', indexController);
 
 // router.post('/login', (req, res,next) => {
 //     // check if password is true?
@@ -41,9 +43,9 @@ router.get('/', (req, res) => {
 //     }
 // });
 
-router.get('/test', authenticate, (req, res) => {
-    res.send("Boys we're inside")
-});
+// router.get('/test', authenticate, (req, res) => {
+//     res.send("Boys we're inside")
+// });
 
 // const githubRoutes = require('./github.js');
 // router.use('/api', githubRoutes);
