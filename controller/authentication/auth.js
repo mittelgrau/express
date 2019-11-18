@@ -1,7 +1,7 @@
 const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
 
-module.exports.authenticate = (req, res, next) => {
+const guardRoute = (req, res, next) => {
     const token = req.cookies.auth_token;
 
     if (!token) {
@@ -21,10 +21,12 @@ module.exports.authenticate = (req, res, next) => {
     });
 };
 
+module.exports = {
+    guardRoute
+}
 
 // module.exports = (fn) => {
 //     return (err, req, res, next) => {
 //         Promise.resolve(fn(req, res, next)).catch(next);
 //     };
 // };
-
