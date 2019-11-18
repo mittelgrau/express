@@ -5,6 +5,11 @@ const {
     authenticate
 } = require('../controller/auth');
 
+router.get('/', (req, res) => {
+    const token = req.cookies;
+    res.send(token);    
+});
+
 router.post('/login', (req, res,next) => {
     // check if password is true?
     if (req.body.password !== process.env.PASSWORD) {
