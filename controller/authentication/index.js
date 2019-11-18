@@ -1,6 +1,6 @@
 const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
-const argon2 = require('argon2');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const guard = (req, res, next) => {
@@ -33,7 +33,10 @@ async function hashPassword(password) {
 
 async function comparePasswords(password) {
     try {
-        return await argon2.verify(process.env.SAMPLEPASSWORD, password);
+        bcrypt.compare(password, process.env.SAMPLEPASSWORD, (err, res) => {
+           
+        });
+
       } catch (err) {
         throw new Error(err)
       }
