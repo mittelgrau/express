@@ -8,12 +8,21 @@ const { comparePasswords,hashPassword } = require('../controller/authentication/
 
 router.post('/login',async (req, res,next) => {
 
-    bcrypt.hash(req.body.password, 10).then(async function(hash) {
-        console.log(req.body.password);
-        console.log(hash);
-        res.send(await bcrypt.compare(hash, process.env.SAMPLEPASSWORD));
-
-     });
+    const SALT_WORK_FACTOR = 10 
+    const compare = await bcrypt.compare(req.body.password, process.env.SAMPLEPASSWORD);
+    
+    res.send(compare);
+    
+    
+    // bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    //         if (err) return next(err);
+    //         // hash the password along with our new salt
+    //         bcrypt.hash(req.body.password, salt, function(err, hash) {
+    //             if (err) return next(err);
+    //             res.send(hash);
+    //         });
+    // });
+    
 
     // hashPassword(req.body.password);
     // console.log(process.env.SAMPLEPASSWORD);
