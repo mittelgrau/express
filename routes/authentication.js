@@ -1,36 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const argon2 = require('argon2');
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const { comparePasswords } = require('../controller/authentication/');
 
 router.post('/login', (req, res,next) => {
 
-    if (req.body.password !== process.env.PASSWORD) {
+    if (comparePasswords(req.body.passwords)) {
         let err = new Error('Acess not allowed');
         err.statusCode = 403;
         next(err);
     } else {
-        const payload = {
-            id: 'nanoid'
-    };
-
-        const token = JWT.sign(payload, process.env.JWT_SECRET);
-
-        const cookieOptions = {
-            httpOnly: true,
-            expires: 0,
-            sameSite: 'Lax',
-            path: '/'
-        };
-
-        res.cookie('auth_token', token, cookieOptions);
-
-        res.status(200).json({
-            message: "Ok we're in"
-        });
+        console.log('yes!')
     }
+        // const payload = {
+        //     id: 'nanoid'
+        // };
+    
+    //     const token = JWT.sign(payload, process.env.JWT_SECRET);
+
+    //     const cookieOptions = {
+    //         httpOnly: true,
+    //         expires: 0,
+    //         sameSite: 'Lax',
+    //         path: '/'
+    //     };
+
+    //     res.cookie('auth_token', token, cookieOptions);
+
+    //     res.status(200).json({
+    //         message: "Ok we're in"
+    //     });
+    // }
 });
 
 

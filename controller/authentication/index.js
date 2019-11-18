@@ -1,8 +1,9 @@
 const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
-const argon = require('argon2')
+const argon2 = require('argon2');
+require('dotenv').config();
 
-const guardRoute = (req, res, next) => {
+const guard = (req, res, next) => {
     const token = req.cookies.auth_token;
 
     if (!token) {
@@ -22,12 +23,26 @@ const guardRoute = (req, res, next) => {
     });
 };
 
-async function comparePasswords(password) {
+async function hashPassword(password) {
+    try {
+        const hash = await argon2.hash(password);
+      } catch (err) {
+        throw new Error(err);
+      }
+}
 
+async function comparePasswords(password) {
+    try {
+        return await argon2.verify(process.env.SAMPLEPASSWORD, password);
+      } catch (err) {
+        throw new Error(err)
+      }
 }
 
 module.exports = {
-    guardRoute
+    comparePasswords,
+    hashPassword,
+    guard
 }
 
 // module.exports = (fn) => {
