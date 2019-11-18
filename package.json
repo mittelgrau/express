@@ -19,7 +19,7 @@
     "dotenv": "^8.1.0",
     "@hapi/joi": "^16.1.3",
     "express-session": "^1.16.1",
-    "cookie": "^0.4.0",
+    "cookie": "^0.4.0"
   },
   "engines": {
     "node": "8.x"

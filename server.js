@@ -8,6 +8,7 @@ const { catchErrors } = require('./helpers.js');
 const session = require('express-session');
 const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
+const argon2 = require('argon2');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
