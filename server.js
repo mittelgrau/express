@@ -9,8 +9,6 @@ const { catchErrors } = require('./helpers.js');
 const session = require('express-session');
 require('dotenv').config();
 
-
-app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('tiny'));
@@ -23,18 +21,17 @@ const jwt = require('jsonwebtoken');
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 app.get('/', (req, res) => {
-    res.send(req.cookies);
+    res.send('cookie was attached');
 });
 
 app.post('/', (req, res) => {
     res.cookie('auth_token', 'testing', {
         sameSite: 'Lax',
         expires: 0,
-        httpOnly: false,
+        httpOnly: true,
         path: '/'
-    });
+    }).send('still sending a cookie');
     
-    res.send('added cookie');
 });
 
 // const authRouter = require('./routes/authenticate');
