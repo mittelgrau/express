@@ -7,32 +7,15 @@ const { comparePasswords,hashPassword } = require('../controller/authentication/
 
 router.post('/login',async (req, res,next) => {
 
-    console.log(req.body.password);
-    try {
-        const hash = await argon2.hash(req.body.password);
-        const copy = '$argon2i$v=19$m=4096,t=3,p=1$mHqsUd6Mqhzj9MUvHu8clQ$08NBCqM8dw4oGtlhAWYr92sJRtmh78nbt+TrfNxracE';
-        const env = process.env.SAMPLEPASSWORD;
-        const hm = await argon2.verify(copy, req.body.password)
-        res.send(`${hm} ìt works but -> ${env} and -> ${copy}`);
-      } catch (err) {
-        
-      }
-
-    // hashPassword(req.body.password);
-    // console.log(process.env.SAMPLEPASSWORD);
-    // const compare = await comparePasswords(req.body.password)
-
-    
-
-    // if (await comparePasswords(req.body.password)) {
-    //     res.send('passwörter sind gleich');
-        // let err = new Error('Acess not allowed');
-        // err.statusCode = 403;
-        // next(err);
-    // } else {
-    //     res.send('kein zutritt');
-    //     console.log('yes!')
-    // }
+    if (await comparePasswords(req.body.password)) {
+        res.send('passwörter sind gleich');
+        let err = new Error('Acesesss not allowed');
+        err.statusCode = 403;
+        next(err);
+    } else {
+        res.send('kein zutritt');
+        console.log('yes!')
+    }
         // const payload = {
         //     id: 'nanoid'
         // };

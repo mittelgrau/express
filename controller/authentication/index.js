@@ -1,8 +1,8 @@
 const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 require('dotenv').config();
-const {password}
+const {hashed} = require('../../config.js');
 
 const guard = (req, res, next) => {
     const token = req.cookies.auth_token;
@@ -35,7 +35,7 @@ async function hashPassword(password) {
 }
 
 async function comparePasswords(password) {
-    return await bcrypt.compare(password, process.env.SAMPLEPASSWORD);
+    return await argon2.verify(hashed, password);
 }
 
 module.exports = {
@@ -43,9 +43,3 @@ module.exports = {
     hashPassword,
     guard
 }
-
-// module.exports = (fn) => {
-//     return (err, req, res, next) => {
-//         Promise.resolve(fn(req, res, next)).catch(next);
-//     };
-// };
