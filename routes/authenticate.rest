@@ -1,1 +1,10 @@
 GET https://jelly-airport.glitch.me
+
+###
+POST https://jelly-airport.glitch.me
+Content-Type: application/json
+
+{
+    "name" : "sample",
+    "time" : "Wed, 21 Oct 2015"
+}
