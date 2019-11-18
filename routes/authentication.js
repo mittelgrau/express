@@ -4,12 +4,22 @@ const nanoid = require('nanoid');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
-const { comparePasswords } = require('../controller/authentication/');
+const { comparePasswords,hashPassword } = require('../controller/authentication/');
 
 router.post('/login',async (req, res,next) => {
 
-    const compare = await comparePasswords(req.body.password)
-    res.send(compare);
+    bcrypt.hash(req.body.password, 10).then(async function(hash) {
+        console.log(req.body.password);
+        console.log(hash);
+        res.send(await bcrypt.compare(hash, process.env.SAMPLEPASSWORD));
+
+     });
+
+    // hashPassword(req.body.password);
+    // console.log(process.env.SAMPLEPASSWORD);
+    // const compare = await comparePasswords(req.body.password)
+
+    
 
     // if (await comparePasswords(req.body.password)) {
     //     res.send('passwörter sind gleich');
