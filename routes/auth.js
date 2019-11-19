@@ -10,10 +10,6 @@ const {jwt_secret} = require('../config.js');
 
 router.post('/login', loginValidation, async (req, res,next) => {
 
-    // 1. check validation
-    // const {error} = loginValidation(req.body);
-    // if(error) return res.status(400).send(error.details[0].message);
-
     // 1. Compare body password with hashed password
     if (!(await comparePasswords(req.body.password))) {
         // throw error if passwords are not the same

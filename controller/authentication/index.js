@@ -2,10 +2,10 @@ const nanoid = require('nanoid');
 const JWT = require('jsonwebtoken');
 const argon2 = require('argon2');
 require('dotenv').config();
-const {hashed} = require('../../config.js');
+const {hashed,jwt_secret} = require('../../config.js');
 
 
-async function guard(req, res, next) {
+async function guard(req, _res, next) {
     
     const token = req.cookies.auth_token;
 
@@ -15,7 +15,7 @@ async function guard(req, res, next) {
         next(err);
     }
 
-    JWT.verify(token, process.env.JWT_SECRET, (err, token) => {
+    JWT.verify(token, jwt_secret, (err, token) => {
         if (err) {
             let err = new Error('Not a valid acess-token');
             err.statusCode = 403;
