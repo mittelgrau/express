@@ -20,10 +20,10 @@ app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 const routes = require('./routes/index');
 app.use('/', routes);
 
-app.use((err, req, res, next) => {
-    console.log(err.message);
-    if (!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).send('No Site this way');
+app.use((error, req, res, next) => {
+    if (!error.statusCode) error.statusCode = 500;
+    if (!error.message) error.message = 'Server Side Error'
+    res.status(error.statusCode).send(error.message);
 })
 
 const listener = app.listen(process.env.PORT, function() {
