@@ -1,9 +1,9 @@
-GET https://jelly-airport.glitch.me
+GET site/
 
 ###
 
 
-POST https://jelly-airport.glitch.me/auth/login
+POST https://site.com/auth/login
 Content-Type: application/json
 
 auth_token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkNDRVhINXd6djVRUEJ3U3hyTlRIVSIsImlhdCI6MTU3NDExMzAxN30.ZQ6sWWjdUWOEg9cLEOGSnhtlHhTxRJC8UFCJNZ6YZGU; Path=/; HttpOnly; SameSite=Lax
